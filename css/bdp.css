@@ -1,0 +1,180 @@
+body, h1 {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #fff;
+}
+
+.navbar-inverse {
+  background: #ec971f;
+  border-color: #f0a000;
+}
+
+.navbar-inverse .navbar-brand {
+  color: #000;
+  font-size: 16px;
+}
+
+.navbar-inverse .navbar-brand:hover {
+  color: #000;
+  text-decoration: underline;  
+}
+
+.top-nav > li > a {
+  color: #000;
+}
+
+.top-nav > li > a:hover {
+}
+
+.top-nav>li>a:hover, .top-nav>li>a:focus, .top-nav>.open>a, .top-nav>.open>a:hover, .top-nav>.open>a:focus {
+  background: #e08300;
+  color: #000;
+}
+
+footer.footer {
+  text-align: center;
+  background: #222;
+  color: #f6f6f6;
+  padding: 15px;
+  border-top: solid 1px #444;
+}
+
+#page-wrapper {
+  min-height: 540px
+}
+
+.page-header {
+  font-size: 23px;
+  height: 60px;
+  line-height: 55px;
+  margin: 0 auto 20px;
+}
+
+.page-header .btn {
+  margin: 10px auto;
+}
+
+.page-header .text-muted {
+  color: #aaaaaa;
+}
+
+.page-header .glyphicon {
+  font-size: 19px;
+  margin-right: 5px;
+}
+
+.btn-special {
+  color: #fff;
+  background-color: #269abc;
+  border-color: #269abc;
+}
+
+.section-summary .page-title {
+  font-size: 19px;
+  margin: 10px auto;
+}
+
+.section-detail .box {
+    padding: 10px 0;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-center th {
+  text-align: center;
+}
+
+.align-center th img {
+  display: inline-block;
+}
+
+.form label {
+  display: block;
+  text-align: right;
+  line-height: 34px;
+}
+
+.form h4 {
+  border-bottom: solid 1px #888;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.row.form {
+  margin-top: 20px;
+}
+
+.table-clubs tbody a {
+  line-height: 50px;
+  display: block;
+}
+
+.table-clubs tr:hover tbody a {
+  text-decoration: underline
+}
+
+.input-group-action {
+  position: relative;
+  display: table;
+  border-collapse: separate;
+}
+
+.input-group-action .btn {
+  margin-left: 5px !important;
+}
+
+.input-group-btn {
+  position: relative;
+  font-size: 0;
+  white-space: nowrap;
+}
+
+.tag {
+  background-color: #9fc4d3;
+  color: #fff;
+  float: left;
+  font-weight: 300;
+  margin: 0 10px 10px 0;
+  padding: 5px 10px;
+  min-width: 145px;
+}
+
+.input-attachment {
+  margin: 10px auto;
+}
+
+.input-attachment .tag small:hover {
+  cursor: pointer;
+}
+
+.form label.upload-image {
+  cursor: pointer;
+  display: inline-block;
+  text-align: left;
+  font-size: 18px
+} 
+
+.mt15 {
+  margin-top: 15px;
+}
+
+.mt25 {
+  margin-top: 25px;
+}
+
+textarea.form-control {
+  height: 34px;
+  resize: vertical;
+}
+
+
+@media (max-width: 991px) {
+  .form label {
+    text-align: left;
+  }
+}
