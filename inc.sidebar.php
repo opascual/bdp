@@ -2,7 +2,7 @@
 <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav side-nav">
         <li <?php if($sidebar == 'home') echo 'class="active"'?> >
-            <a href="index.php"><i class="fa fa-fw fa-home"></i> Inici</a>
+            <a href="dashboard.php"><i class="fa fa-fw fa-home"></i> Inici</a>
         </li>
         <li <?php if($sidebar == 'seasons') echo 'class="active"'?> >
             <a href="seasons.php"><i class="fa fa-fw fa-signal"></i> Temporades</a>

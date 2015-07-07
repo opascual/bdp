@@ -1,3 +1,7 @@
+<?php 
+    $page_name = "player_add";
+    include 'connector.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 

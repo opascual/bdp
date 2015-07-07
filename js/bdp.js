@@ -36,7 +36,7 @@ var players = [
 /**
  *	Home controller
  */
-bdpApp.controller('HomeController', function($scope){
+bdpApp.controller('HomeController', function(){
 
 
 });
@@ -244,7 +244,7 @@ bdpApp.controller('SportsController', function($scope){
 	];
 */
 	$scope.deleteSport = function(item) {
-		console.log('item a eliminar: ', item)
+            console.log('item a eliminar: ', item);
 	}
 
 	$scope.sportsObj = sqlObj;

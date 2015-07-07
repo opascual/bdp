@@ -1,3 +1,7 @@
+<?php 
+    $page_name = "checkups_club";
+    include 'connector.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,3 +1,11 @@
+<?php 
+    session_start();
+    
+    if(isset($_SESSION['login_user'])) {
+        header("location: dashboard.php");
+    }    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,119 +47,25 @@
 <body ng-app="bdpApp">
 
     <div id="wrapper" ng-controller="homeController">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <?php 
-                include 'inc.header.php';
-            ?>
-
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <?php 
-                $sidebar = 'home';
-                include 'inc.sidebar.php';
-            ?>
-            <!-- /.navbar-collapse -->
-        </nav>
-
+        
         <div id="page-wrapper">
 
-            <div class="container-fluid">
-
-                <h1 class="page-header">
-                    <span class="fa fa-fw fa-home"></span>
-                    Inici
-                </h1>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h4>Accions principals</h4>
-                    </div>
+            <!--<div class="container-fluid">-->
+                <div class="col-lg-4 col-md-6">
+                    <form action="login.php" method="post">
+                        <div class="form-group">
+                                <label for="username">Usuari:</label> 
+                                <input type="text" class="form-control" id="username" name="username" />
+                        </div>
+                        <div class="form-group">
+                                <label for="password">Contrassenya:</label> 
+                                <input type="password" class="form-control" id="password" name="password" />
+                        </div>
+                        <button name="submit" type="submit" class="btn btn-primary" value="Enviar">Enviar</button>
+                    </form>
                 </div>
-
-                <div class="row mt15">
-                    <div class="col-lg-4 col-md-6">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title"><i class="fa fa-signal"></i> Nova temporada</h3>
-                                </div>
-                                <a href="season_add.php">
-                                    <div class="panel-footer">
-                                        <span class="pull-left">Crear temporada</span>
-                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title"><i class="fa fa-fw fa-futbol-o"></i> Nou esport</h3>
-                                </div>
-                                <a href="sport_add.php">
-                                    <div class="panel-footer">
-                                        <span class="pull-left">Crear esport</span>
-                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title"><i class="fa fa-fw fa-shield"></i> Nou club</h3>
-                                </div>
-                                <a href="club_add.php">
-                                    <div class="panel-footer">
-                                        <span class="pull-left">Crear club</span>
-                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="col-lg-4 col-md-6">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title"><i class="fa fa-fw fa-user"></i> Nou jugador</h3>
-                                </div>
-                                <a href="player_add.php">
-                                    <div class="panel-footer">
-                                        <span class="pull-left">Crear jugador</span>
-                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title"><i class="fa fa-fw fa-folder-open"></i> Nova revisió</h3>
-                                </div>
-                                <a href="checkup_add.php">
-                                    <div class="panel-footer">
-                                        <span class="pull-left">Crear revisió</span>
-                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                </div>
-
-            </div>
-            <!-- /.container-fluid -->
-
+            <!--</div>-->
         </div>
-        <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->

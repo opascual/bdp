@@ -1,7 +1,13 @@
 <?php 
+    session_start();
+    
+    if(!isset($_SESSION['login_user'])) {
+        header("location: index.php");
+    }
 
-    $mysqli = NEW MySQLi('localhost', 'root', '', 'bdp');
-
+    // Connection ot database
+    $mysqli = NEW MySQLi('localhost', 'root', 'root', 'bdp');
+    
     // get SQL string
     $query_string = getQueryString($page_name);
     

@@ -1,3 +1,7 @@
+<?php 
+    $page_name = "club_add";
+    include 'connector.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,13 +91,13 @@
                         <section class="col-md-4">
                             <label>Imatge</label>
                         </section>
-                        <section class="col-md-8">
+<!--                        <section class="col-md-8">
                             <div class="form-group">
                                 <input id="file_url" class="form-control" type="text" ng-model="club.file_url" ng-if="!club.file_url" />
                                 <img ng-src="{{club.file_url}}" width="80" ng-if="club.file_url" />
                             </div>
-                        </section>
-                        <!--
+                        </section>-->
+                        
                         <section class="col-md-8">
                             <div class="form-group">
                                 <img ng-src="{{club.file_url}}" width="80" ng-if="club.file_url"/>
@@ -103,7 +107,7 @@
                                 </label>
                             </div>
                         </section>
-                        -->
+                        
 
 
                         <section class="col-md-4">
@@ -192,12 +196,6 @@
 
     <!-- Own JS -->
     <script src="js/bdp.js"></script>
-
-
-<?php 
-    $page_name = "club_add";
-    include 'connector.php';
-?>
 
 <script type="text/javascript">
   var sqlObj = <?php echo json_encode($array_obj) ?>;

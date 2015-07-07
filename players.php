@@ -1,3 +1,7 @@
+<?php 
+    $page_name = "players";
+    include 'connector.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -144,12 +148,6 @@
 
     <!-- Own JS -->
     <script src="js/bdp.js"></script>
-
-<?php 
-    $page_name = "players";
-    include 'connector.php';
-?>
-
 <script type="text/javascript">
 
   var sqlObj = <?php echo json_encode($array_obj) ?>;
