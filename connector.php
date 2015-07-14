@@ -9,27 +9,27 @@ if (!isset($_SESSION['login_user'])) {
 // Connection ot database
 $mysqli = New MySQLi('localhost', 'root', 'root', 'bdp');
 
-// Format page name by "_" on name_page
-if(strpos($page_name, '_')) {
-    $page_name = substr($page_name, 0, strpos($page_name, '_'));
-}
 
 $action = $_GET['a'];
 switch($action){
     case 'add':
         
+        // Format page name by "_" on name_page
+        if(strpos($page_name, '_')) {
+            $page_list = substr($page_name, 0, strpos($page_name, '_')) . 's';
+        }
+        
         // Perform an INSERT
         if(!empty($_POST)) {
-            include 'models/' . $page_name . '.php';
-            $model_name = ucfirst($page_name);
-            $model = new $model_name($mysqli);
+            include 'models/' . $model_name . '.php';
+            $model_ins = ucfirst($model_name);
+            $model = new $model_ins($mysqli);
             $res = $model->insert($_POST);
             if($res) {
-                $page_list = substr($page_text, 0, strpos($page_text, '_')) . 's';
                 header("location: " . $page_list . ".php?m=ok");
             }
         } else {
-            header("location; " . $page_text . ".php");
+            header("location; " . $page_list . ".php");
         }
         
         break;
@@ -40,13 +40,13 @@ switch($action){
         // Get item id 
         $id = $_GET['s'];
         
-        include 'models/' . $page_name . '.php';
-        $model_name = ucfirst($page_name);
-        $model = new $model_name($mysqli);
+        include 'models/' . $model_name . '.php';
+        $model_ins = ucfirst($model_name);
+        $model = new $model_ins($mysqli);
         $res = $model->delete($id);
         
         if($res) {
-            header("location: " . $page_text . ".php?m=ok");
+            header("location: " . $page_name . ".php?m=ok");
         }
         
         break;
@@ -54,7 +54,7 @@ switch($action){
     default :
         
         // Perform a SELECT
-        $query_string = getQueryString($page_text);
+        $query_string = getQueryString($page_name);
 
         $resultSet = $mysqli->query($query_string);
 
@@ -63,7 +63,7 @@ switch($action){
 
             while ($rows = $resultSet->fetch_assoc()) {
                 // Get query data
-                $data = getDataRow($rows, $page_text);
+                $data = getDataRow($rows, $page_name);
                 
                 // Push data to $array_obj
                 array_push($array_obj, $data);

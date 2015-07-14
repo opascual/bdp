@@ -1,6 +1,6 @@
 <?php 
+    $model_name = "season";
     $page_name  = "season_add";
-    $page_text  = "season_add";
     include 'connector.php';
 ?>
 <!DOCTYPE html>
