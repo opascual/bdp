@@ -1,5 +1,6 @@
 <?php 
-    $page_name = "seasons";
+    $page_name = "season";
+    $page_text = "seasons";
     include 'connector.php';
 ?>
 <!DOCTYPE html>
@@ -88,7 +89,7 @@
                                         <td>{{ item.clubs }}</td>
                                         <td>{{ item.checkups }}</td>
                                         <td>
-                                            <a href="javascript:;">Eliminar temporada</a>
+                                            <a href="?a=delete&s={{ item.id }}">Eliminar temporada</a>
                                         </td>
                                     </tr>
                                 </tbody>

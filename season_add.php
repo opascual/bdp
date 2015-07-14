@@ -1,5 +1,6 @@
 <?php 
-    $page_name = "season_add";
+    $page_name  = "season_add";
+    $page_text  = "season_add";
     include 'connector.php';
 ?>
 <!DOCTYPE html>
@@ -68,25 +69,30 @@
                     <span class="text-muted">Temporades</span> / Nova temporada                    
                 </h1>
 
-                <div class="row">
-                    <section class="col-md-4 section-summary">
-                        <h5 class="page-title ng-binding">Temporada</h5>
-                        <p>Es necessita crear una temporada per associar les revisions mèdiques.</p>
-                    </section>
-                    <section class="col-md-8 section-detail">
-                        <div class="box">
-                            <div class="form-group">
-                                <p>
-                                    <label for="seasons" class="ng-binding">Nova temporada</label>
-                                </p>
-                                <select ng-model="newSeason" ng-options="season.id for season in newSeasonObj" class="form-control"></select>
+                <form action="?a=add" method="post">
+                    <div class="row">
+                        <section class="col-md-4 section-summary">
+                            <h5 class="page-title ng-binding">Temporada</h5>
+                            <p>Es necessita crear una temporada per associar les revisions mèdiques.</p>
+                        </section>
+                        <section class="col-md-8 section-detail">
+                            <div class="box">
+                                <div class="form-group">
+                                    <p>
+                                        <label for="seasons" class="ng-binding">Nova temporada</label>
+                                    </p>
+<!--                                    <select name="seasons" ng-model="newSeason" class="form-control">
+                                        <option ng-repeat="s in newSeasonObj" value="{{s.id}}">{{s.id}}</option>
+                                    </select>-->
+                                    <input class="form-control" type="number" name="seasons" min="2015" placeholder="2015"/>
+                                </div>
                             </div>
-                        </div>
-                    </section>
-                </div>
-                <footer class="text-right">
-                    <input type="submit" class="btn btn-primary" value="Crear temporada" />
-                </footer>
+                        </section>
+                    </div>
+                    <footer class="text-right">
+                        <input type="submit" class="btn btn-primary" value="Crear temporada" />
+                    </footer>
+                </form>
 
             </div>
             <!-- /.container-fluid -->
