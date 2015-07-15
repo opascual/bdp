@@ -10,22 +10,24 @@ if (!isset($_SESSION['login_user'])) {
 $mysqli = New MySQLi('localhost', 'root', 'root', 'bdp');
 
 // Get current page DB model
-include 'models/' . $model_name . '.php';
-$model_ins = ucfirst($model_name);
-$model = new $model_ins($mysqli);
+if(!is_null($model_name)) {
+    include 'models/' . $model_name . '.php';
+    $model_ins = ucfirst($model_name);
+    $model = new $model_ins($mysqli);
+}
 
 $action = $_GET['a'];
 switch($action){
     case 'add':
-        
+
         // Format page name by "_" on name_page
         if(strpos($page_name, '_')) {
             $page_list = substr($page_name, 0, strpos($page_name, '_')) . 's';
         }
-        
+
         // If is POST
         if(!empty($_POST)) {
-            
+
             // Insert new item
             $res = $model->insert($_POST);
             if($res) {
@@ -34,15 +36,15 @@ switch($action){
         } else {
             header("location: " . $page_list . ".php");
         }
-        
+
         break;
     case 'edit':
-        
+
         // Format page name by "_" on name_page
         if(strpos($page_name, '_')) {
             $page_list = substr($page_name, 0, strpos($page_name, '_')) . 's';
         }
-        
+
         // If is POST
         if($_POST) {
             // Update item by id
@@ -54,29 +56,28 @@ switch($action){
             if(empty($_GET['id'])) {
                 header("location: " . $page_list . ".php");
             }
-            
+
             // Show data
             $array_obj = $model->getById($_GET['id']);
         }
-        
+
         break;
     case 'delete':
-        
+
         // Get item id 
         $id = $_GET['s'];
         $res = $model->delete($id);
-        
+
         if($res) {
             header("location: " . $page_name . ".php?m=ok");
         }
-        
-        break;
-    
-    default :
-        
-        // Perform a SELECT
-        $query_string = getQueryString($page_name);
 
+        break;
+
+    default :
+
+        // Perform Select query
+        $query_string = getQueryString($page_name);
         $resultSet = $mysqli->query($query_string);
 
         if ($resultSet->num_rows != 0) {
@@ -85,17 +86,16 @@ switch($action){
             while ($rows = $resultSet->fetch_assoc()) {
                 // Get query data
                 $data = getDataRow($rows, $page_name);
-                
+
                 // Push data to $array_obj
                 array_push($array_obj, $data);
             }
         } else {
             echo "No results";
         }
-        
+
         break;
 }
-
 
 /**
  * get SQL string

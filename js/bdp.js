@@ -63,8 +63,7 @@ bdpApp.controller('SeasonsController', function($scope) {
      $scope.seasonTable = array_seasons;
      */
     $scope.seasonTable = sqlObj;
-
-    console.log('$scope.seasonTable: ', $scope.seasonTable)
+    console.log('$scope.seasonTable: ', $scope.seasonTable);
 
 
 });
