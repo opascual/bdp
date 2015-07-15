@@ -47,7 +47,7 @@ class Season{
      * @return int
      */
     function getMax() {
-        $sql = "SELECT MAX(season_id) as id FROM season;";
+        $sql = "SELECT MAX(season_id) as id FROM season";
         $res = $this->_mysqli->query($sql);
         
         $m = $res->fetch_row();
@@ -55,5 +55,4 @@ class Season{
         
         return $max_id;
     }
-    
 }

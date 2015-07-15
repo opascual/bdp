@@ -1,4 +1,5 @@
-<?php 
+<?php
+    $model_name = "sport";
     $page_name = "sports";
     include 'connector.php';
 ?>
@@ -84,11 +85,11 @@
                                 <tbody>
                                     <tr ng-repeat="item in sportsObj">
                                         <td>
-                                            <a href="sports_add.php?id={{item.id}}">{{ item.name }}</a>
+                                            <a href="sport_add.php?a=edit&id={{item.id}}">{{ item.name }}</a>
                                         </td>
                                         <td>{{ item.num_clubs }}</td>
                                         <td>
-                                            <a href="javascript:void(0);" ng-click="deleteSport(item)">
+                                            <a href="?a=delete&s={{ item.id }}" ng-click="deleteSport(item)">
                                                 Eliminar esport
                                             </a>
                                         </td>

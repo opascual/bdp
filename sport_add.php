@@ -1,4 +1,5 @@
 <?php 
+    $model_name = "sport";
     $page_name = "sport_add";
     include 'connector.php';
 ?>
@@ -67,23 +68,39 @@
                     <span class="fa fa-fw fa-futbol-o"></span>
                     <span class="text-muted">Esport</span> / Crear esport                    
                 </h1>
-
-                <div class="row">
-                    <section class="col-md-4 section-summary">
-                        <h5 class="page-title ng-binding">Nom de l'esport</h5>
-                    </section>
-                    <section class="col-md-8 section-detail">
-                        <div class="box">
-                            <div class="form-group">
-                                <input type="text" class="form-control" ng-model="new_sport" />
+                <form action="<?php echo ($editData['sport_id']) ? '?a=edit' : '?a=add' ; ?>" method="post">
+                    <input type="hidden" name="sport_id" value="<?php echo ($editData['sport_id']) ? $editData['sport_id'] : ''; ?>" />
+                    <div class="row">
+                        <section class="col-md-4 section-summary">
+                            <h5 class="page-title ng-binding">Nom de l'esport</h5>
+                        </section>
+                        <section class="col-md-8 section-detail">
+                            <div class="box">
+                                <div class="form-group">
+                                    <!--<input name="name" type="text" class="form-control" ng-model="new_sport.name" />-->
+                                    <input name="name" type="text" class="form-control" value="<?php echo ($editData['name']) ? $editData['name'] : ''; ?>" />
+                                </div>
                             </div>
-                        </div>
-                    </section>
-                </div>
-                <footer class="text-right">
-                    <input type="submit" class="btn btn-primary" value="Crear esport" ng-disabled="!(new_sport.length >= 0)" />
-                </footer>
-
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col-md-4 section-summary">
+                            <h5 class="page-title ng-binding">Descripció</h5>
+                        </section>
+                        <section class="col-md-8 section-detail">
+                            <div class="box">
+                                <div class="form-group">
+                                    <!--<input name="description" type="text" class="form-control" ng-model="new_sport.description" />-->
+                                    <input name="description" type="text" class="form-control" value="<?php echo ($editData['description']) ? $editData['description'] : ''; ?>" />
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <footer class="text-right">
+                        <!--<input type="submit" class="btn btn-primary" value="<?php //echo ($editData['name']) ? 'Actualitzar' : 'Crear'; ?> esport" ng-disabled="!(new_sport.name.length >= 0)" />-->
+                        <input type="submit" class="btn btn-primary" value="<?php echo ($editData['sport_id']) ? 'Actualitzar' : 'Crear'; ?> esport" />
+                    </footer>
+                </form>
                 <div class="row">
                     <section class="col-md-12">
                         <div class="form-group">

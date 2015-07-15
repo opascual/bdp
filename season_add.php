@@ -84,7 +84,7 @@
 <!--                                    <select name="seasons" ng-model="newSeason" class="form-control">
                                         <option ng-repeat="s in newSeasonObj" value="{{s.id}}">{{s.id}}</option>
                                     </select>-->
-                                    <input class="form-control" type="number" name="seasons" min="2015" placeholder="2015"/>
+                                    <input class="form-control" type="number" name="seasons" min="<?php echo date("Y"); ?>" placeholder="<?php echo date("Y"); ?>"/>
                                 </div>
                             </div>
                         </section>

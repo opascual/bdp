@@ -9,6 +9,10 @@ if (!isset($_SESSION['login_user'])) {
 // Connection ot database
 $mysqli = New MySQLi('localhost', 'root', 'root', 'bdp');
 
+// Get current page DB model
+include 'models/' . $model_name . '.php';
+$model_ins = ucfirst($model_name);
+$model = new $model_ins($mysqli);
 
 $action = $_GET['a'];
 switch($action){
@@ -19,30 +23,47 @@ switch($action){
             $page_list = substr($page_name, 0, strpos($page_name, '_')) . 's';
         }
         
-        // Perform an INSERT
+        // If is POST
         if(!empty($_POST)) {
-            include 'models/' . $model_name . '.php';
-            $model_ins = ucfirst($model_name);
-            $model = new $model_ins($mysqli);
+            
+            // Insert new item
             $res = $model->insert($_POST);
             if($res) {
-                header("location: " . $page_list . ".php?m=ok");
+                header("location: " . $page_list . ".php?m=iok");
             }
         } else {
-            header("location; " . $page_list . ".php");
+            header("location: " . $page_list . ".php");
         }
         
         break;
     case 'edit':
+        
+        // Format page name by "_" on name_page
+        if(strpos($page_name, '_')) {
+            $page_list = substr($page_name, 0, strpos($page_name, '_')) . 's';
+        }
+        
+        // If is POST
+        if($_POST) {
+            // Update item by id
+            $res = $model->update($_POST);
+            if($res) {
+                header("location: " . $page_list . ".php?m=uok");
+            }
+        } else {
+            if(empty($_GET['id'])) {
+                header("location: " . $page_list . ".php");
+            }
+            
+            // Show data
+            $editData = $model->getById($_GET['id']);
+        }
+        
         break;
     case 'delete':
         
         // Get item id 
         $id = $_GET['s'];
-        
-        include 'models/' . $model_name . '.php';
-        $model_ins = ucfirst($model_name);
-        $model = new $model_ins($mysqli);
         $res = $model->delete($id);
         
         if($res) {
