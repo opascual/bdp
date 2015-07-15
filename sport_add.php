@@ -68,8 +68,8 @@
                     <span class="fa fa-fw fa-futbol-o"></span>
                     <span class="text-muted">Esport</span> / Crear esport                    
                 </h1>
-                <form action="<?php echo ($editData['sport_id']) ? '?a=edit' : '?a=add' ; ?>" method="post">
-                    <input type="hidden" name="sport_id" value="<?php echo ($editData['sport_id']) ? $editData['sport_id'] : ''; ?>" />
+                <form action="<?php echo ($array_obj['sport_id']) ? '?a=edit' : '?a=add' ; ?>" method="post">
+                    <input type="hidden" name="sport_id" value="<?php echo ($array_obj['sport_id']) ? $array_obj['sport_id'] : ''; ?>" />
                     <div class="row">
                         <section class="col-md-4 section-summary">
                             <h5 class="page-title ng-binding">Nom de l'esport</h5>
@@ -77,8 +77,7 @@
                         <section class="col-md-8 section-detail">
                             <div class="box">
                                 <div class="form-group">
-                                    <!--<input name="name" type="text" class="form-control" ng-model="new_sport.name" />-->
-                                    <input name="name" type="text" class="form-control" value="<?php echo ($editData['name']) ? $editData['name'] : ''; ?>" />
+                                    <input name="name" type="text" class="form-control" ng-model="new_sport.name" />
                                 </div>
                             </div>
                         </section>
@@ -90,15 +89,13 @@
                         <section class="col-md-8 section-detail">
                             <div class="box">
                                 <div class="form-group">
-                                    <!--<input name="description" type="text" class="form-control" ng-model="new_sport.description" />-->
-                                    <input name="description" type="text" class="form-control" value="<?php echo ($editData['description']) ? $editData['description'] : ''; ?>" />
+                                    <input name="description" type="text" class="form-control" ng-model="new_sport.description" />
                                 </div>
                             </div>
                         </section>
                     </div>
                     <footer class="text-right">
-                        <!--<input type="submit" class="btn btn-primary" value="<?php //echo ($editData['name']) ? 'Actualitzar' : 'Crear'; ?> esport" ng-disabled="!(new_sport.name.length >= 0)" />-->
-                        <input type="submit" class="btn btn-primary" value="<?php echo ($editData['sport_id']) ? 'Actualitzar' : 'Crear'; ?> esport" />
+                        <input type="submit" class="btn btn-primary" value="<?php echo ($array_obj['name']) ? 'Actualitzar' : 'Crear'; ?> esport" ng-disabled="!(new_sport.name.length >= 0)" />
                     </footer>
                 </form>
                 <div class="row">
@@ -135,7 +132,12 @@
 
     <!-- Own JS -->
     <script src="js/bdp.js"></script>
+<script type="text/javascript">
 
+  var sqlObj = <?php echo json_encode($array_obj); ?>;
+  console.log('sqlObj: ', sqlObj.name);
+
+</script>
 </body>
 
 </html>

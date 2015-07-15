@@ -128,8 +128,8 @@
 
 <script type="text/javascript">
 
-  var sqlObj = <?php echo json_encode($array_obj) ?>;
-  console.log('sqlObj: ', sqlObj)
+  var sqlObj = <?php echo json_encode($array_obj); ?>;
+  console.log('sqlObj: ', sqlObj);
 
 </script>
 

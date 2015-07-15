@@ -259,6 +259,8 @@ bdpApp.controller('SportsController', function($scope) {
  */
 bdpApp.controller('AddSportController', function($scope) {
     $scope.sports = ['Basquet', 'Handbol'];
+    $scope.new_sport = sqlObj;
+    console.log($scope.new_sport);
 });
 
 

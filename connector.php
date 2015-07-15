@@ -56,7 +56,7 @@ switch($action){
             }
             
             // Show data
-            $editData = $model->getById($_GET['id']);
+            $array_obj = $model->getById($_GET['id']);
         }
         
         break;
