@@ -19,14 +19,19 @@ if (isset($_POST['submit'])) {
         $password = stripslashes($password);
         $username = mysql_real_escape_string($username);
         $password = mysql_real_escape_string($password);
-
-//        echo $password . ' ' . $username;die;
         
         // Selecting Database
         $db = mysql_select_db("dbp", $connection);
         
         // SQL query to fetch information of registerd users and finds user match.
-        $sql = "SELECT * FROM user as u LEFT JOIN admin as a ON a.id = u.id LEFT JOIN player as p ON p.id = u.id WHERE u.id='$username' AND u.password='$password'";
+        $sql = "SELECT * "
+                . "FROM user as u "
+                . "LEFT JOIN admin as a ON a.id = u.id "
+                . "LEFT JOIN player as p ON p.id = u.id "
+                . "WHERE u.id='$username' "
+                . "AND u.password='$password'";
+        
+        // Get user
         $query = $mysqli->query($sql);
         if ($query) {
 

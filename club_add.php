@@ -1,4 +1,5 @@
 <?php 
+    $model_name = "club";
     $page_name = "club_add";
     include 'connector.php';
 ?>
@@ -91,19 +92,12 @@
                         <section class="col-md-4">
                             <label>Imatge</label>
                         </section>
-<!--                        <section class="col-md-8">
-                            <div class="form-group">
-                                <input id="file_url" class="form-control" type="text" ng-model="club.file_url" ng-if="!club.file_url" />
-                                <img ng-src="{{club.file_url}}" width="80" ng-if="club.file_url" />
-                            </div>
-                        </section>-->
-                        
                         <section class="col-md-8">
                             <div class="form-group">
                                 <img ng-src="{{club.file_url}}" width="80" ng-if="club.file_url"/>
                                 <label for="uploadImage" class="upload-image">
                                     <span><i class="fa fa-camera"></i></span>
-                                    <input id="uploadImage" type="file" accept="image/jpeg,image/png" name="image" class="hidden">
+                                    <input id="uploadImage" type="file" accept="image/jpeg,image/png,image/jpg" name="image" class="hidden">
                                 </label>
                             </div>
                         </section>

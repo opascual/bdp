@@ -1,4 +1,5 @@
 <?php 
+    $model_name = "club";
     $page_name = "clubs";
     include 'connector.php';
 ?>

@@ -1,8 +1,8 @@
 <?php
 /**
- * Model sports
+ * Model club
  */
-class Sport{
+class Club{
     
     var $_mysqli;
     
@@ -12,7 +12,7 @@ class Sport{
     }
     
     /**
-     * Function to insert a new sport
+     * Function to insert a new club
      * @param array $data
      * @return bool
      */
@@ -23,7 +23,10 @@ class Sport{
             // Get MAX id
             $id = $this->getMAX();
             
-            $sql = 'INSERT INTO sport VALUES (' . $id . ', "' . $data['name'] 
+            // TODO - Add image
+            
+            
+            $sql = 'INSERT INTO club VALUES (' . $id . ', "' . $data['name'] 
                 . '","' . $data['description'] . '")';
             
 

@@ -4,6 +4,7 @@
         <li <?php if($sidebar == 'home') echo 'class="active"'?> >
             <a href="dashboard.php"><i class="fa fa-fw fa-home"></i> Inici</a>
         </li>
+<?php if(isset($_SESSION['role']) && $_SESSION['role'] == 1) { ?>
         <li <?php if($sidebar == 'seasons') echo 'class="active"'?> >
             <a href="seasons.php"><i class="fa fa-fw fa-signal"></i> Temporades</a>
         </li>
@@ -16,6 +17,7 @@
         <li <?php if($sidebar == 'players') echo 'class="active"'?> >
             <a href="players.php"><i class="fa fa-fw fa-user"></i> Jugadors</a>
         </li>
+<?php } ?>
         <li <?php if($sidebar == 'checkups') echo 'class="active"'?> >
             <a href="checkups.php"><i class="fa fa-fw fa-folder-open"></i> Revisions</a>
         </li>

@@ -72,7 +72,7 @@
                         <h4>Accions principals</h4>
                     </div>
                 </div>
-
+<?php if(isset($_SESSION['role']) && $_SESSION['role'] == 1) { ?>
                 <div class="row mt15">
                     <div class="col-lg-4 col-md-6">
                             <div class="panel panel-primary">
@@ -148,6 +148,7 @@
                                 </a>
                             </div>
                         </div>
+<?php } ?>
                 </div>
 
             </div>

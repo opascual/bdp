@@ -1,5 +1,9 @@
 <?php
 
+// Turn off error_reporting
+error_reporting(0);
+
+// Start session
 session_start();
 
 if (!isset($_SESSION['login_user'])) {
@@ -16,6 +20,7 @@ if(!is_null($model_name)) {
     $model = new $model_ins($mysqli);
 }
 
+// Check action
 $action = $_GET['a'];
 switch($action){
     case 'add':
@@ -27,7 +32,6 @@ switch($action){
 
         // If is POST
         if(!empty($_POST)) {
-
             // Insert new item
             $res = $model->insert($_POST);
             if($res) {
@@ -67,7 +71,6 @@ switch($action){
         // Get item id 
         $id = $_GET['s'];
         $res = $model->delete($id);
-
         if($res) {
             header("location: " . $page_name . ".php?m=ok");
         }
@@ -90,8 +93,6 @@ switch($action){
                 // Push data to $array_obj
                 array_push($array_obj, $data);
             }
-        } else {
-            echo "No results";
         }
 
         break;
@@ -168,28 +169,4 @@ function getDataRow($rows, $page_name) {
         );
     }
 }
-
-/*
-  array(19) {
-  ["id"]=> string(1) "1"
-  ["name"]=> string(4) "UESC"
-  ["surname"]=> string(14) "Ortega Carrion"
-  ["user_name"]=> string(13) "eduard.ortega"
-  ["password"]=> string(8) "19830521"
-  ["deleted"]=> string(1) "0"
-  ["last_login"]=> string(8) "20150617"
-  ["admin"]=> string(1) "0"
-  ["birth_date"]=> string(8) "19830521"
-  ["created_at"]=> string(8) "20150520"
-  ["club_id"]=> string(1) "1"
-  ["sport_id"]=> string(1) "1"
-  ["category_id"]=> string(1) "1"
-  ["gender"]=> string(1) "1"
-
-  ["file_url"]=> string(43) "http://bernatdepablo.cat/img/logos/uesc.jpg"
-  ["contact_name"]=> string(11) "Llu�s Curto"
-  ["contact_phone"]=> string(9) "606123123"
-  ["contact_mail"]=> string(13) "info@uesc.org"
-  ["visible"]=> string(1) "1"
-  } */
 ?>

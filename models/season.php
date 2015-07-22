@@ -21,7 +21,7 @@ class Season{
             // Get MAX id
             $id = $this->getMAX();
             
-            $sql = "INSERT INTO season VALUES (". $id .", ". $data['seasons'] .", 0)";
+            $sql = "INSERT INTO season VALUES (". $id .", ". $data['seasons'] .", 1)";
             $res = $this->_mysqli->query($sql);
 
             return $res;
