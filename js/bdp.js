@@ -195,7 +195,8 @@ bdpApp.controller('AddClubController', function($scope) {
      };
      */
 
-    $scope.sportsObj = sqlObj;
+    $scope.club = sqlObj;
+    console.log($scope.club);
 
     $scope.addSport = function() {
 

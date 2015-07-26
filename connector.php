@@ -10,6 +10,10 @@ if (!isset($_SESSION['login_user'])) {
     header("location: index.php");
 }
 
+// Define ROOT PATH
+$root_path = getcwd();
+define('ROOT_PATH', $root_path);
+
 // Connection ot database
 $mysqli = New MySQLi('localhost', 'root', 'root', 'bdp');
 

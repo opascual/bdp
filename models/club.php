@@ -17,19 +17,37 @@ class Club{
      * @return bool
      */
     function insert($data) {
-        
-        if(!empty($data['name'])) {
-            
+        if(!empty($data['name'])) 
+        {
             // Get MAX id
             $id = $this->getMAX();
             
-            // TODO - Add image
+            // Add logo image
+            if ($_FILES["file_url"]["error"] == UPLOAD_ERR_OK) 
+            {
+                // Logos path
+                $logos_path = ROOT_PATH . '/img/logos/';
+                
+                // File data
+                $tmp_name   = $_FILES["file_url"]["tmp_name"];
+                $file_name  = $logos_path . $_FILES["file_url"]["name"];
+                
+                // Url to show thumb image
+                $file_url   = substr($file_name, strpos($file_name, '/img') + 1);
+                
+                move_uploaded_file($tmp_name, "$file_name");
+            } else {
+                $file_url   = "";
+            }
             
-            
+            // Insert data
             $sql = 'INSERT INTO club VALUES (' . $id . ', "' . $data['name'] 
-                . '","' . $data['description'] . '")';
+                . '","' . $file_url 
+                . '","' . $data['contact_name']
+                . '","' . $data['contact_phone']
+                . '","' . $data['contact_mail']
+                . '", 1)';
             
-
             $res = $this->_mysqli->query($sql);
 
             return $res;
@@ -37,16 +55,40 @@ class Club{
     }
     
     /**
-     * Function to update a new sport
+     * Function to update a club
      * @param array $data
      * @return bool
      */
     function update($data) {
         
         if(!empty($data['name'])) {
-            $sql = 'UPDATE sport SET name="' . $data['name'] . 
-                '", description="' . $data['description'] . '" WHERE sport_id=' . $data['sport_id'];
-
+            
+            // Add logo image
+            if ($_FILES["file_url"]["error"] == UPLOAD_ERR_OK) 
+            {
+                // Logos path
+                $logos_path = ROOT_PATH . '/img/logos/';
+                
+                // File data
+                $tmp_name   = $_FILES["file_url"]["tmp_name"];
+                $file_name  = $logos_path . $_FILES["file_url"]["name"];
+                
+                // Url to show thumb image
+                $file_url   = substr($file_name, strpos($file_name, '/img') + 1);
+                
+                move_uploaded_file($tmp_name, "$file_name");
+            } else {
+                $file_url   = $data['uploaded_file'];
+            }
+            
+            // Update data
+            $sql = 'UPDATE club SET club_name="' . $data['name']
+                . '", file_url="' . $file_url
+                . '", contact_name="' . $data['contact_name'] 
+                . '", contact_phone="' . $data['contact_phone'] 
+                . '", contact_mail="' . $data['contact_mail'] 
+                    . '" WHERE club_id=' . $data['club_id'];
+            
             $res = $this->_mysqli->query($sql);
 
             return $res;
@@ -54,20 +96,25 @@ class Club{
     }
     
     /**
-     * Function to delete a sport
+     * Function to delete a club
      * @param int $id
      * @return bool
      */
     function delete($id) {
         
-        $sql = "DELETE FROM sport WHERE sport_id = " . $id;
+        $sql = "DELETE FROM club WHERE club_id = " . $id;
         $res = $this->_mysqli->query($sql);
         
         return $res;
     }
     
+    /**
+     * Function to get a club by id
+     * @param type $id
+     * @return type
+     */
     function getById($id) {
-        $sql = "SELECT * FROM sport WHERE sport_id = " . $id;
+        $sql = "SELECT * FROM club WHERE club_id = " . $id;
         $res = $this->_mysqli->query($sql);
 
         $data = $res->fetch_array();
@@ -79,7 +126,7 @@ class Club{
      * @return int
      */
     function getMax() {
-        $sql = "SELECT MAX(sport_id) as id FROM sport";
+        $sql = "SELECT MAX(club_id) as id FROM club";
         $res = $this->_mysqli->query($sql);
         
         $m = $res->fetch_row();

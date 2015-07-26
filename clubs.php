@@ -104,12 +104,12 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="club_add.php?id={{item.id}}">
+                                            <a href="club_add.php?a=edit&id={{item.id}}">
                                                 {{ item.name }}
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="javascript:;">Eliminar club</a>
+                                            <a href="?a=delete&s={{ item.id }}">Eliminar club</a>
                                         </td>
                                     </tr>
                                 </tbody>
