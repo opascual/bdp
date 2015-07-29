@@ -1,35 +1,35 @@
 var bdpApp = angular.module('bdpApp', []);
 
-var players = [
-    {
-        id: 1,
-        name: 'Edu',
-        surname: 'Ortega Carrión',
-        nif: '46358501T',
-        club_name: 'UESC'
-    },
-    {
-        id: 2,
-        name: 'Bernat',
-        surname: 'de Pablo Márquez',
-        nif: '123456789T',
-        club_name: 'EPSA'
-    },
-    {
-        id: 3,
-        name: 'Mireia',
-        surname: 'Bernadó Figuerola',
-        nif: '123456789P',
-        club_name: 'Sferic de Terrassa'
-    },
-    {
-        id: 4,
-        name: 'Nacho',
-        surname: 'Mayol Ortí',
-        nif: '456456456W',
-        club_name: 'UESC'
-    }
-];
+//var players = [
+//    {
+//        id: 1,
+//        name: 'Edu',
+//        surname: 'Ortega Carrión',
+//        nif: '46358501T',
+//        club_name: 'UESC'
+//    },
+//    {
+//        id: 2,
+//        name: 'Bernat',
+//        surname: 'de Pablo Márquez',
+//        nif: '123456789T',
+//        club_name: 'EPSA'
+//    },
+//    {
+//        id: 3,
+//        name: 'Mireia',
+//        surname: 'Bernadó Figuerola',
+//        nif: '123456789P',
+//        club_name: 'Sferic de Terrassa'
+//    },
+//    {
+//        id: 4,
+//        name: 'Nacho',
+//        surname: 'Mayol Ortí',
+//        nif: '456456456W',
+//        club_name: 'UESC'
+//    }
+//];
 
 
 
@@ -73,13 +73,13 @@ bdpApp.controller('SeasonsController', function($scope) {
  *	Add Season controller
  */
 bdpApp.controller('AddSeasonController', function($scope) {
-    $scope.newSeasonObj = [
-        {id: 2016},
-        {id: 2017},
-        {id: 2018},
-        {id: 2019},
-        {id: 2020}
-    ];
+//    $scope.newSeasonObj = [
+//        {id: 2016},
+//        {id: 2017},
+//        {id: 2018},
+//        {id: 2019},
+//        {id: 2020}
+//    ];
 });
 
 
@@ -101,6 +101,9 @@ bdpApp.controller('PlayersController', function($scope) {
  *	Players controller
  */
 bdpApp.controller('AddPlayerController', function($scope) {
+
+    $scope.player = sqlObj;
+    console.log($scope.player);
 
     /*$scope.player = {
      nif: '46358501T',
@@ -144,7 +147,6 @@ bdpApp.controller('AddPlayerController', function($scope) {
      file_url: 'www.dummy.com/checkup'
      }
      ];*/
-
 });
 
 

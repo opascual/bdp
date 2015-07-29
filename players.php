@@ -1,5 +1,6 @@
 <?php 
-    $page_name = "players";
+    $model_name = "player";
+    $page_name  = "players";
     include 'connector.php';
 ?>
 <!DOCTYPE html>
@@ -110,14 +111,14 @@
                                 <tbody>
                                     <tr ng-repeat="item in playersArray | filter: searchText | orderBy: predicate:reverse">
                                         <td>
-                                            <a href="player_add.php?id={{item.nif}}">{{ item.surname }}, {{ item.name }}</a>
+                                            <a href="player_add.php?a=edit&id={{item.nif}}">{{ item.surname }}, {{ item.name }}</a>
                                         </td>
                                         <td>{{ item.nif }}</td>
                                         <td>
                                             {{ item.club_name }}
                                         </td>
                                         <td>
-                                            <a href="javascript:;">Eliminar jugador</a>
+                                            <a href="?a=delete&s={{ item.nif }}">Eliminar jugador</a>
                                         </td>
                                     </tr>
                                 </tbody>
