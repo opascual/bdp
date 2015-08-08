@@ -1,6 +1,10 @@
-<?php 
+<?php
+    $model_name = "checkup";
     $page_name = "checkups_club";
     include 'connector.php';
+    
+    // Get selectors data
+    $seasons = $model->getSeasonsWithRevision();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,7 +88,11 @@
                         <div class="form-group">
                             <label for="season">Temporada</label>
                             
-                            <select id="season" class="form-control" ng-model="seasons" ng-options="item.season for item in checkupsObj" ng-change="changeSeason(seasons.season)">
+                            <!--<select id="season" class="form-control" ng-model="seasons" ng-options="item.season for item in checkupsObj" ng-change="changeSeason(seasons.season)">-->
+                            <select id="season" class="form-control" >
+                                <?php foreach ($seasons as $c) { ?>
+                                    <option value="<?php echo $c['season_id'] ?>" <?php echo ($_GET['s'] == $c['season_id']) ? 'selected=selected' : '' ; ?>><?php echo $c['year'] ?></option>
+                                <?php } ?>
                             </select>
 
                         </div>
@@ -106,14 +114,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="item in checkupsTable | filter: searchText | orderBy:'player_name': reverse">
+                                    <tr ng-repeat="item in checkupsObj | filter: searchText | orderBy:'player_name': reverse">
                                         <td>
                                             <a href="player_add.php?id={{item.player_id}}">
                                                 {{ item.player_name }}
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="javascript:;">
+                                            <a href="checkup_add.php?a=edit&id={{item.checkup_id}}">
                                                 # {{ item.checkup_id }}
                                             </a>
                                         </td>
@@ -147,6 +155,43 @@
     <!-- Own JS -->
     <script src="js/bdp.js"></script>
 
+    <script type="text/javascript">
+
+    var sqlObj = <?php echo json_encode($array_obj); ?>;
+    console.log('sqlObj: ', sqlObj);
+    
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    };
+    
+    $( "#season" ).change(function() {
+        
+        var season = $(this).val();
+        var cid = getUrlParameter('cid');
+        
+        $.ajax({
+            method: "POST",
+            url: "getCheckSeasonTeam.php",
+            data: { s: season, cid: cid }
+        })
+        .done(function( data ) {
+
+            var data2 = JSON.parse(data);
+            checkSeasonTeam(data2);
+        });
+    });
+    </script>
 </body>
 
 </html>

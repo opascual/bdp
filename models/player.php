@@ -194,13 +194,8 @@ class Player {
      */
     public function fetch_all($result, $resulttype = MYSQLI_NUM) 
     {
-        # Compatibility layer with PHP < 5.3
-        if (method_exists('mysqli_result', 'fetch_all')) {
-            $res = parent::fetch_all($resulttype);
-        } else {
-            for ($res = array(); $tmp = $result->fetch_array($resulttype);) {
-                $res[] = $tmp;
-            }
+        for ($res = array(); $tmp = $result->fetch_array($resulttype);) {
+            $res[] = $tmp;
         }
 
         return $res;

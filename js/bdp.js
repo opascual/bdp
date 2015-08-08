@@ -265,84 +265,114 @@ bdpApp.controller('AddSportController', function($scope) {
     console.log($scope.new_sport);
 });
 
+var applyCheckSeason;
 
 /**
  *	Checkups controller
  */
 bdpApp.controller('CheckupsController', function($scope) {
 
-    $scope.checkupsObj = [
-        {
-            season: 2015,
-            data: [
-                {club_name: 'UESC', club_id: 123, players: 123},
-                {club_name: 'Sferic Terrassa', club_id: 456, players: 456},
-                {club_name: 'Sant Pere Terrassa', club_id: 789, players: 789},
-                {club_name: 'QBasket', club_id: 666, players: 11}
-            ]
-        },
-        {
-            season: 2014,
-            data: [
-                {club_name: 'UESC', club_id: 123, players: 12},
-                {club_name: 'Sferic Terrassa', club_id: 456, players: 34},
-                {club_name: 'Sant Pere Terrassa', club_id: 789, players: 56},
-            ]
-        },
-    ];
-
-    $scope.reverse = false;
-    $scope.seasons = $scope.checkupsObj[0];
-    $scope.checkupsTable = $scope.checkupsObj[0].data;
-
-    $scope.changeSeason = function(item) {
-        for (i = 0; i < $scope.checkupsObj.length; i++) {
-            if ($scope.checkupsObj[i].season == item) {
-                $scope.checkupsTable = $scope.checkupsObj[i].data;
-            }
-        }
+    $scope.checkupsObj = sqlObj;
+    console.log('$scope.checkupsObj: ', $scope.checkupsObj);
+    
+    applyCheckSeason = function(info) {
+        $scope.checkupsObj = info;
+        $scope.$apply();
     }
+    
+//    $scope.checkupsObj = [
+//        {
+//            season: 2015,
+//            data: [
+//                {club_name: 'UESC', club_id: 123, players: 123},
+//                {club_name: 'Sferic Terrassa', club_id: 456, players: 456},
+//                {club_name: 'Sant Pere Terrassa', club_id: 789, players: 789},
+//                {club_name: 'QBasket', club_id: 666, players: 11}
+//            ]
+//        },
+//        {
+//            season: 2014,
+//            data: [
+//                {club_name: 'UESC', club_id: 123, players: 12},
+//                {club_name: 'Sferic Terrassa', club_id: 456, players: 34},
+//                {club_name: 'Sant Pere Terrassa', club_id: 789, players: 56},
+//            ]
+//        },
+//    ];
+
+//    $scope.reverse = false;
+//    $scope.seasons = $scope.checkupsObj[0];
+//    $scope.checkupsTable = $scope.checkupsObj[0].data;
+//
+//    $scope.changeSeason = function(item) {
+//        for (i = 0; i < $scope.checkupsObj.length; i++) {
+//            if ($scope.checkupsObj[i].season == item) {
+//                $scope.checkupsTable = $scope.checkupsObj[i].data;
+//            }
+//        }
+//    }
 });
 
+function checkSeason(info) {
+    applyCheckSeason(info);
+}
+
+
+var applyCheckSeasonTeam;
 
 /**
  *	Checkups Club controller
  */
 bdpApp.controller('CheckupsClubController', function($scope) {
 
-    $scope.checkupsObj = [
-        {
-            season: 2015,
-            data: [
-                {player_name: 'Eduard Ortega Carrión', player_id: 123, player_category: 'Senior A', checkup_id: 123},
-                {player_name: 'Bernat de Pablo Márquez', player_id: 456, player_category: 'Senior B', checkup_id: 456},
-                {player_name: 'Mireia Bernadó Figuerola', player_id: 789, player_category: 'Júnior', checkup_id: 789},
-                {player_name: 'Nacho Mayol Ortí', player_id: 666, player_category: 'Cadet', checkup_id: 666}
-            ]
-        },
-        {
-            season: 2014,
-            data: [
-                {player_name: 'Eduard Ortega Carrión', player_id: 123, player_category: 'Júnioe', checkup_id: 1},
-                {player_name: 'Bernat de Pablo Márquez', player_id: 456, player_category: 'Senior B', checkup_id: 2},
-                {player_name: 'Nacho Mayol Ortí', player_id: 666, player_category: 'Infantil', checkup_id: 3}
-            ]
-        },
-    ];
-
-    $scope.reverse = false;
-    $scope.seasons = $scope.checkupsObj[0];
-    $scope.checkupsTable = $scope.checkupsObj[0].data;
-
-    $scope.changeSeason = function(item) {
-        for (i = 0; i < $scope.checkupsObj.length; i++) {
-            if ($scope.checkupsObj[i].season == item) {
-                $scope.checkupsTable = $scope.checkupsObj[i].data;
-            }
-        }
+    $scope.checkupsObj = sqlObj;
+    console.log('$scope.checkupsObj: ', $scope.checkupsObj);
+    
+    applyCheckSeasonTeam = function (info) {
+        $scope.checkupsObj = info;
+        $scope.$apply();
     }
+    
+    
+//    $scope.checkupsObj = [
+//        {
+//            season: 2015,
+//            data: [
+//                {player_name: 'Eduard Ortega Carrión', player_id: 123, player_category: 'Senior A', checkup_id: 123},
+//                {player_name: 'Bernat de Pablo Márquez', player_id: 456, player_category: 'Senior B', checkup_id: 456},
+//                {player_name: 'Mireia Bernadó Figuerola', player_id: 789, player_category: 'Júnior', checkup_id: 789},
+//                {player_name: 'Nacho Mayol Ortí', player_id: 666, player_category: 'Cadet', checkup_id: 666}
+//            ]
+//        },
+//        {
+//            season: 2014,
+//            data: [
+//                {player_name: 'Eduard Ortega Carrión', player_id: 123, player_category: 'Júnioe', checkup_id: 1},
+//                {player_name: 'Bernat de Pablo Márquez', player_id: 456, player_category: 'Senior B', checkup_id: 2},
+//                {player_name: 'Nacho Mayol Ortí', player_id: 666, player_category: 'Infantil', checkup_id: 3}
+//            ]
+//        },
+//    ];
+//
+//    $scope.reverse = false;
+//    $scope.seasons = $scope.checkupsObj[0];
+//    $scope.checkupsTable = $scope.checkupsObj[0].data;
+//
+//    $scope.changeSeason = function(item) {
+//        for (i = 0; i < $scope.checkupsObj.length; i++) {
+//            if ($scope.checkupsObj[i].season == item) {
+//                $scope.checkupsTable = $scope.checkupsObj[i].data;
+//            }
+//        }
+//    }
 
 });
+
+function checkSeasonTeam ($info) {
+    applyCheckSeasonTeam($info);
+}
+
+var applyJson;
 
 
 /**
@@ -350,5 +380,33 @@ bdpApp.controller('CheckupsClubController', function($scope) {
  */
 bdpApp.controller('AddCheckupController', function($scope) {
 
-    //$scope.checkup.player.anthropometry.imc = $scope.checkup.player.anthropometry.weight / ($scope.checkup.player.anthropometry.height * $scope.checkup.player.anthropometry.height)) * 10000;
+    $scope.checkup = sqlObj;
+    
+    
+    applyJson = function(info){
+        // Player data
+        $scope.checkup.player_name = info.player_name;
+        $scope.checkup.player_birth_date = info.player_birth_date;
+        
+        // Background player data
+        $scope.checkup.background_family     = info.background_family;
+        $scope.checkup.background_injuries   = info.background_injuries;
+        $scope.checkup.background_disease    = info.background_disease;
+        $scope.checkup.background_fracture   = info.background_fracture;
+        $scope.checkup.background_allergy    = info.background_allergy;
+        $scope.checkup.background_activity   = info.background_activity;
+        $scope.checkup.background_other      = info.background_other;
+        
+        // Apply changes to scope
+        $scope.$apply();      
+        
+        console.log('$scope.checkup', $scope.checkup);
+     }
+     
+     console.log('$scope.checkup', $scope.checkup);
+    
 });
+
+function applyJsonData (info){
+   applyJson(info);
+}
