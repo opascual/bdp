@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
                 . "LEFT JOIN admin as a ON a.id = u.id "
                 . "LEFT JOIN player as p ON p.id = u.id "
                 . "WHERE u.id='$username' "
-                . "AND u.password='$password'";
+                . "AND u.token='$password'";
         
         // Get user
         $query = $mysqli->query($sql);

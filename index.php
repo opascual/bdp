@@ -52,7 +52,7 @@
 
             <!--<div class="container-fluid">-->
                 <div class="col-lg-4 col-md-6">
-                    <form action="login.php" method="post">
+                    <form id="login" action="login.php" method="post">
                         <div class="form-group">
                                 <label for="username">Usuari:</label> 
                                 <input type="text" class="form-control" id="username" name="username" />
@@ -71,6 +71,9 @@
     <!-- /#wrapper -->
     <footer class="footer">Copyright © bernatdepablo.cat</footer>
 
+    <!-- md5 -->
+    <script src="js/md5.js"></script>
+
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
@@ -83,6 +86,12 @@
     <!-- Own JS -->
     <script src="js/bdp.js"></script>
 
+    <script type="text/javascript">
+    $('#login').on('submit', function (event) {
+        $('#password').val(window.md5($('#password').val()));
+    });
+    </script>
+    
 </body>
 
 </html>
