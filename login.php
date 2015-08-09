@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
             /* fetch object array */
             if ($row = $query->fetch_row()) {
                 $_SESSION['login_user'] = $row[1]; 
-                $_SESSION['role']       = $row[8];
+                $_SESSION['role']       = $row[9];
                 
                 header("location: dashboard.php"); // Redirecting to dashboard
             } else {
