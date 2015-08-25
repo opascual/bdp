@@ -12,7 +12,8 @@ if (isset($_POST['submit'])) {
         $password = $_POST['password'];
         
         // Establishing Connection with Server by passing server_name, user_id and password as a parameter
-        $mysqli = New MySQLi('localhost', 'root', 'root', 'bdp');
+        //$mysqli = New MySQLi('localhost', 'root', 'root', 'bdp');
+        $mysqli = New MySQLi('localhost', 'root', '', 'bdp');
     
         // To protect MySQL injection for Security purpose
         $username = stripslashes($username);
