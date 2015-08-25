@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
                 . "LEFT JOIN admin as a ON a.id = u.id "
                 . "LEFT JOIN player as p ON p.id = u.id "
                 . "WHERE u.id='$username' "
-                . "AND u.password='$password'";
+                . "AND u.token='$password'";
         
         // Get user
         $query = $mysqli->query($sql);
@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
             /* fetch object array */
             if ($row = $query->fetch_row()) {
                 $_SESSION['login_user'] = $row[1]; 
-                $_SESSION['role']       = $row[8];
+                $_SESSION['role']       = $row[9];
                 
                 header("location: dashboard.php"); // Redirecting to dashboard
             } else {

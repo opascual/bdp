@@ -1,6 +1,10 @@
 <?php 
-    $page_name = "checkup_add";
+    $model_name = "checkup";
+    $page_name  = "checkup_add";
     include 'connector.php';
+    
+    // Get selectors data
+    $seasons = $model->getSeasons();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +66,8 @@
         <div id="page-wrapper">
 
             <div class="container-fluid">
-
+                <form action="<?php echo ($array_obj['checkup_id']) ? '?a=edit' : '?a=add' ; ?>" method="post">
+                <input type="hidden" name="checkup_id" value="<?php echo ($array_obj['checkup_id']) ? $array_obj['checkup_id'] : '' ; ?>" />
                 <h1 class="page-header">
                     <span class="fa fa-fw fa-folder-open"></span>
                     <span class="text-muted">Revisions médiques</span> / {{ checkup ? 'Editar revisió' : 'Crear revisió' }}
@@ -78,21 +83,10 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <select id="season" class="form-control" ng-model="checkup.season">
-                                <option>2015</option>
-                                <option>2014</option>
-                            </select>
-                        </div>
-                    </section>
-
-                    <section class="col-md-4">
-                        <label for="club">Club</label>
-                    </section>
-                    <section class="col-md-8">
-                        <div class="form-group">
-                            <select id="club" class="form-control" ng-model="checkup.club">
-                                <option>UESC</option>
-                                <option>Club</option>
+                            <select id="season" name="season_id" class="form-control" ng-model="checkup.season_id">
+                                <?php foreach ($seasons as $c) { ?>
+                                    <option value="<?php echo $c['season_id'] ?>"><?php echo $c['year'] ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                     </section>
@@ -108,7 +102,8 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <input type="text" class="form-control" ng-model="checkup.player.nif" />
+                            <!--<input id="nif" type="text" name="player_id" class="form-control" ng-model="checkup.nif" />-->
+                            <input id="nif" type="text" name="player_id" class="form-control" ng-model="checkup.player_id" />
                             <p class="help-block">Un cop introduït el NIF s'afegirà la informació referent al jugador</p>
                         </div>
                     </section>
@@ -118,7 +113,8 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <input type="text" class="form-control" ng-model="checkup.player.name" ng-disabled="true">
+                            <input type="text" class="form-control" ng-model="checkup.player_name" ng-disabled="true">
+                            <input type="hidden" name="player_name" ng-value="checkup.player_name" />
                         </div>
                     </section>
 
@@ -127,7 +123,8 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <input type="text" class="form-control" ng-model="checkup.player.birth_date" ng-disabled="true">
+                            <input type="text" class="form-control" ng-model="checkup.player_birth_date" ng-disabled="true">
+                            <input type="hidden" name="player_birth_date" ng-value="checkup.player_birth_date" />
                         </div>
                     </section>
                 </div>
@@ -142,7 +139,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <textarea id="family" class="form-control" ng-model="checkup.player.background.family"></textarea>
+                            <textarea id="family" name="background_family" class="form-control" ng-model="checkup.background_family"></textarea>
                         </div>
                     </section>
                     <section class="col-md-4">
@@ -150,7 +147,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <textarea id="injuries" class="form-control" ng-model="checkup.player.background.injuries"></textarea>
+                            <textarea id="injuries" name="background_injuries"  class="form-control" ng-model="checkup.background_injuries"></textarea>
                         </div>
                     </section>
                     <section class="col-md-4">
@@ -158,7 +155,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <textarea id="disease" class="form-control" ng-model="checkup.player.background.disease"></textarea>
+                            <textarea id="disease" name="background_disease" class="form-control" ng-model="checkup.background_disease"></textarea>
                         </div>
                     </section>
                     <section class="col-md-4">
@@ -166,7 +163,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <textarea id="fracture" class="form-control" ng-model="checkup.player.background.fracture"></textarea>
+                            <textarea id="fracture" name="background_fracture" class="form-control" ng-model="checkup.background_fracture"></textarea>
                         </div>
                     </section>
                     <section class="col-md-4">
@@ -174,7 +171,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <textarea id="allergy" class="form-control" ng-model="checkup.player.background.allergy"></textarea>
+                            <textarea id="allergy" name="background_allergy" class="form-control" ng-model="checkup.background_allergy"></textarea>
                         </div>
                     </section>
                     <section class="col-md-4">
@@ -182,7 +179,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <input id="activity" type="text" class="form-control" ng-model="checkup.player.background.activity"/>
+                            <input id="activity" name="background_activity" type="text" class="form-control" ng-model="checkup.background_activity"/>
                             <p class="help-block">Total d'hores, per exemple: 8</p>
                         </div>
                     </section>
@@ -191,7 +188,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <textarea id="other_background" class="form-control" ng-model="checkup.player.background.other_background"></textarea>
+                            <textarea id="other_background" name="background_other" class="form-control" ng-model="checkup.background_other"></textarea>
                         </div>
                     </section>
                 </div>
@@ -206,7 +203,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <input type="text" class="form-control" ng-model="checkup.player.anthropometry.height" />
+                            <input type="text" id="height" name="anthropometry_height" class="form-control" ng-model="checkup.anthropometry_height" />
                             <p class="help-block">Cm, per exemple: 194</p>
                         </div>
                     </section>
@@ -215,7 +212,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <input type="text" class="form-control" ng-model="checkup.player.anthropometry.weight" />
+                            <input type="text" id="weight" name="anthropometry_weight" class="form-control" ng-model="checkup.anthropometry_weight" />
                             <p class="help-block">Kg, per exemple: 83</p>
                         </div>
                     </section>
@@ -224,7 +221,8 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <input type="text" id="morphotype" class="form-control" ng-disabled="true" value="{{ (checkup.player.anthropometry.weight / (checkup.player.anthropometry.height * checkup.player.anthropometry.height)) * 10000 | number: 2 }}" />
+                            <input type="text" name="anthropometry_imc" id="imc" class="form-control" ng-disabled="true" value="{{ (checkup.anthropometry_weight / (checkup.anthropometry_height * checkup.anthropometry_height)) * 10000 | number: 2 }}" />
+                            <input type="hidden" name="anthropometry_imc" ng-value="{{ (checkup.anthropometry_weight / (checkup.anthropometry_height * checkup.anthropometry_height)) * 10000 | number: 2 }}" />
                         </div>
                     </section>
                     <section class="col-md-4">
@@ -232,7 +230,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <textarea id="morphotype" class="form-control" ng-model="checkup.player.anthropometry.morphotype"></textarea>
+                            <textarea id="morphotype" name="anthropometry_morphotype" class="form-control" ng-model="checkup.anthropometry_morphotype"></textarea>
                         </div>
                     </section>
                 </div>
@@ -247,7 +245,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <textarea id="rhythm" class="form-control" ng-model="checkup.player.cardio.rhythm"></textarea>
+                            <textarea id="rhythm" name="cardio_rhytm" class="form-control" ng-model="checkup.cardio_rhytm"></textarea>
                         </div>
                     </section>
                     <section class="col-md-4">
@@ -255,7 +253,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <textarea id="pressure" class="form-control" ng-model="checkup.player.cardio.pressure"></textarea>
+                            <textarea id="pressure" name="cardio_pressure" class="form-control" ng-model="checkup.cardio_pressure"></textarea>
                         </div>
                     </section>
                     <section class="col-md-4">
@@ -263,7 +261,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <textarea id="pulses" class="form-control" ng-model="checkup.player.cardio.pulses"></textarea>
+                            <textarea id="pulses" name="cardio_pulses" class="form-control" ng-model="checkup.cardio_pulses"></textarea>
                         </div>
                     </section>
                     <section class="col-md-4">
@@ -271,7 +269,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <textarea id="ecg" class="form-control" ng-model="checkup.player.cardio.ecg"></textarea>
+                            <textarea id="ecg" name="cardio_ecg" class="form-control" ng-model="checkup.cardio_ecg"></textarea>
                         </div>
                     </section>
                     <section class="col-md-4">
@@ -279,7 +277,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <textarea id="bufs" class="form-control" ng-model="checkup.player.cardio.bufs"></textarea>
+                            <textarea id="bufs" name="cardio_bufs" class="form-control" ng-model="checkup.cardio_bufs"></textarea>
                         </div>
                     </section>
                     <section class="col-md-4">
@@ -287,7 +285,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <input type="text" id="oxygen" class="form-control" ng-model="checkup.player.cardio.oxygen" />
+                            <input type="text" id="oxygen" name="cardio_oxygen" class="form-control" ng-model="checkup.cardio_oxygen" />
                             <p class="text-muted">Percentatge (%)</p>
                         </div>
                     </section>
@@ -303,7 +301,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <textarea id="column" class="form-control" ng-model="checkup.player.musculoskeletal.column"></textarea>
+                            <textarea id="column" name="musculoskeletal_column" class="form-control" ng-model="checkup.musculoskeletal_column"></textarea>
                         </div>
                     </section>
                     <section class="col-md-4">
@@ -311,7 +309,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <textarea id="limb" class="form-control" ng-model="checkup.player.musculoskeletal.limb"></textarea>
+                            <textarea id="limb" name="musculoskeletal_limb" class="form-control" ng-model="checkup.musculoskeletal_limb"></textarea>
                         </div>
                     </section>
                     <section class="col-md-4">
@@ -319,7 +317,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <textarea id="hamstrings" class="form-control" ng-model="checkup.player.musculoskeletal.hamstrings"></textarea>
+                            <textarea id="hamstrings" name="musculoskeletal_hamstrings" class="form-control" ng-model="checkup.musculoskeletal_hamstrings"></textarea>
                         </div>
                     </section>
                     <section class="col-md-4">
@@ -327,7 +325,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <textarea id="varus" class="form-control" ng-model="checkup.player.musculoskeletal.varus"></textarea>
+                            <textarea id="varus" name="musculoskeletal_varus" class="form-control" ng-model="checkup.musculoskeletal_varus"></textarea>
                         </div>
                     </section>
                     <section class="col-md-4">
@@ -335,7 +333,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <textarea id="podoscopia" class="form-control" ng-model="checkup.player.musculoskeletal.podoscopia"></textarea>
+                            <textarea id="podoscopia" name="musculoskeletal_podoscopia" class="form-control" ng-model="checkup.musculoskeletal_podoscopia"></textarea>
                         </div>
                     </section>
                 </div>
@@ -351,7 +349,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <textarea id="recommend" class="form-control" ng-model="checkup.player.recommend"></textarea>
+                            <textarea id="recommend" name="recommend" class="form-control" ng-model="checkup.recommend"></textarea>
                         </div>
                     </section>
                 </div>
@@ -360,7 +358,7 @@
                 <footer class="text-right">
                     <input type="submit" class="btn btn-primary" value="{{ checkup ? 'Guardar' : 'Crear revisió' }}" />
                 </footer>
-
+                </form>
             </div>
             <!-- /.container-fluid -->
 
@@ -382,6 +380,30 @@
 
     <!-- Own JS -->
     <script src="js/bdp.js"></script>
+    
+    <script type="text/javascript">
+
+    var sqlObj = <?php echo json_encode($array_obj); ?>;
+    console.log('sqlObj: ', sqlObj);
+    
+    $( "#nif" ).blur(function() {
+        
+        var nif = $(this).val();
+        
+        $.ajax({
+            method: "POST",
+            url: "getUserDataAjax.php",
+            data: { id: nif}
+        })
+        .done(function( data ) {
+
+            var data2 = JSON.parse(data);
+            console.log('data: ', data2);
+
+            applyJsonData(data2);
+        });
+    });
+    </script>
 
 </body>
 

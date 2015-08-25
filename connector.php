@@ -128,6 +128,29 @@ function getQueryString($page_name) {
         //return "SELECT * FROM user u INNER JOIN player p on u.id = p.id";
         return "SELECT * FROM user u INNER JOIN player p ON u.id = p.id INNER JOIN club c ON p.club_id = c.club_id";
     }
+    
+    if ($page_name == "checkups") {
+
+        return "SELECT cl.club_id as club_id, cl.club_name as club_name
+            , COUNT(cl.club_id) as players, c.season_id as season_id
+            FROM checkup as c
+            LEFT JOIN player as p ON c.player_id = p.id
+            LEFT JOIN club as cl ON p.club_id = cl.club_id
+            WHERE c.season_id = 1
+            GROUP BY cl.club_id";
+    }
+    
+    if ($page_name == "checkups_club") {
+        
+        return "SELECT u.id, CONCAT(u.name, ' ', u.surname) as player_name, c.checkup_id as checkup_id, cat.category_name as player_category
+            FROM checkup as c
+            LEFT JOIN user as u ON c.player_id = u.id
+            LEFT JOIN player as p ON c.player_id = p.id
+            LEFT JOIN category as cat ON p.category_id = cat.category_id
+            WHERE c.season_id = " . $_GET['s'] . "
+            AND p.club_id = " . $_GET['cid'];
+    }
+    
 }
 
 /**
@@ -171,6 +194,24 @@ function getDataRow($rows, $page_name) {
             'surname'   => $rows['surname'],
             'club_name' => $rows['club_name'],
             'club_id'   => $rows['club_id']
+        );
+    }
+
+    if ($page_name == "checkups") {
+        return array(
+            'club_id'   => $rows['club_id'],
+            'club_name' => $rows['club_name'],
+            'players'   => $rows['players'],
+            'season_id' => $rows['season_id']
+        );
+    }
+
+    if ($page_name == "checkups_club") {
+        return array(
+            'player_id'         => $rows['id'],
+            'player_name'       => $rows['player_name'],
+            'checkup_id'        => $rows['checkup_id'],
+            'player_category'   => $rows['player_category']
         );
     }
 }

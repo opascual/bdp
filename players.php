@@ -152,8 +152,7 @@
 <script type="text/javascript">
 
   var sqlObj = <?php echo json_encode($array_obj) ?>;
-
-  console.log('Players sqlObj: ', sqlObj)
+  console.log('Players sqlObj: ', sqlObj);
 
 </script>
 

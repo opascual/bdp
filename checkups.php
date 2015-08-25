@@ -1,6 +1,10 @@
 <?php 
-    $page_name = "checkups";
+    $model_name = "checkup";
+    $page_name  = "checkups";
     include 'connector.php';
+    
+    // Get selectors data
+    $seasons = $model->getSeasonsWithRevision();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +78,11 @@
                         <div class="form-group">
                             <label for="season">Temporada</label>
                             
-                            <select id="season" class="form-control" ng-model="seasons" ng-options="item.season for item in checkupsObj" ng-change="changeSeason(seasons.season)">
+                            <!--<select id="season" class="form-control" ng-model="seasons" ng-options="item.season for item in checkupsObj" ng-change="changeSeason(seasons.season)">-->
+                            <select id="season" class="form-control">
+                                <?php foreach ($seasons as $c) { ?>
+                                    <option value="<?php echo $c['season_id'] ?>"><?php echo $c['year'] ?></option>
+                                <?php } ?>
                             </select>
 
                         </div>
@@ -90,9 +98,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="item in checkupsTable | orderBy:'club_name': reverse">
+                                    <tr ng-repeat="item in checkupsObj | orderBy:'club_name': reverse">
                                         <td>
-                                            <a href="checkups_club.php?id={{item.club_id}}">
+                                            <a href="checkups_club.php?cid={{item.club_id}}&s={{item.season_id}}">
                                                 {{ item.club_name }}
                                             </a>
                                         </td>
@@ -126,6 +134,28 @@
     <!-- Own JS -->
     <script src="js/bdp.js"></script>
 
+    <script type="text/javascript">
+
+    var sqlObj = <?php echo json_encode($array_obj); ?>;
+    console.log('sqlObj: ', sqlObj);
+    
+    $( "#season" ).change(function() {
+        
+        var season = $(this).val();
+        
+        $.ajax({
+            method: "POST",
+            url: "getCheckSeason.php",
+            data: { sid: season }
+        })
+        .done(function( data ) {
+
+            var data2 = JSON.parse(data);
+            checkSeason(data2);
+        });
+    });
+    </script>
+    
 </body>
 
 </html>
