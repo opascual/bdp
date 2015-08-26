@@ -32,7 +32,9 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
 
     <!-- Own CSS -->
+    
     <link href="css/bdp.css" rel="stylesheet">
+    <link href="css/signin.css" rel="stylesheet">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -44,30 +46,23 @@
 
 </head>
 
-<body ng-app="bdpApp">
+<body ng-app="bdpApp" class="home">
 
-    <div id="wrapper" ng-controller="homeController">
-        
-        <div id="page-wrapper">
-
-            <!--<div class="container-fluid">-->
-                <div class="col-lg-4 col-md-6">
-                    <form id="login" action="login.php" method="post">
-                        <div class="form-group">
-                                <label for="username">Usuari:</label> 
-                                <input type="text" class="form-control" id="username" name="username" />
-                        </div>
-                        <div class="form-group">
-                                <label for="password">Contrassenya:</label> 
-                                <input type="password" class="form-control" id="password" name="password" />
-                        </div>
-                        <button name="submit" type="submit" class="btn btn-primary" value="Enviar">Enviar</button>
-                    </form>
-                </div>
-            <!--</div>-->
-        </div>
-
+    <div ng-controller="homeController">
+        <h2 class="form-signin-heading">Revisions mèdiques esportives</h2>
+        <form class="form-signin" id="login" action="login.php" method="post">
+            <div class="form-group">
+                    <label for="username">Usuari:</label> 
+                    <input type="text" class="form-control" id="username" name="username" required autofocus/>
+            </div>
+            <div class="form-group">
+                    <label for="password">Contrassenya:</label> 
+                    <input type="password" class="form-control" id="password" name="password" required/>
+            </div>
+            <button name="submit" type="submit" class="btn btn-lg btn-primary btn-block">Iniciar sessió</button>
+        </form>
     </div>
+
     <!-- /#wrapper -->
     <footer class="footer">Copyright © bernatdepablo.cat</footer>
 

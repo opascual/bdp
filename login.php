@@ -1,5 +1,8 @@
 <?php
 
+// Turn off error_reporting
+//error_reporting(0);
+
 session_start(); // Starting Session
 $error = ''; // Variable To Store Error Message
 if (isset($_POST['submit'])) {
