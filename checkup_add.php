@@ -221,8 +221,7 @@
                     </section>
                     <section class="col-md-8">
                         <div class="form-group">
-                            <input type="text" name="anthropometry_imc" id="imc" class="form-control" ng-disabled="true" value="{{ (checkup.anthropometry_weight / (checkup.anthropometry_height * checkup.anthropometry_height)) * 10000 | number: 2 }}" />
-                            <input type="hidden" name="anthropometry_imc" ng-value="{{ (checkup.anthropometry_weight / (checkup.anthropometry_height * checkup.anthropometry_height)) * 10000 | number: 2 }}" />
+                            <input type="text" id="imc" class="form-control" name="anthropometry_imc" value="{{ (checkup.anthropometry_weight / (checkup.anthropometry_height * checkup.anthropometry_height)) * 10000 | number: 2 }}" />
                         </div>
                     </section>
                     <section class="col-md-4">

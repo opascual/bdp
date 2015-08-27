@@ -32,7 +32,7 @@ class Player {
                     . '","' . $data['surname']
                     . '","' . $data['user_name']
                     . '","' . $birth
-                    . '", 0, "")';
+                    . '", 0, "", "' . md5($birth) . '")';
             
             $res = $this->_mysqli->query($sql);
             if(!$res) {
