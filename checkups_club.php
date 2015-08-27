@@ -116,7 +116,7 @@
                                 <tbody>
                                     <tr ng-repeat="item in checkupsObj | filter: searchText | orderBy:'player_name': reverse">
                                         <td>
-                                            <a href="player_add.php?id={{item.player_id}}">
+                                            <a href="player_add.php?a=edit&id={{item.player_id}}">
                                                 {{ item.player_name }}
                                             </a>
                                         </td>
