@@ -1,6 +1,6 @@
 <?php
 // Connection ot database
-$mysqli = New MySQLi('localhost', 'root', 'root', 'bdp');
+$mysqli = New MySQLi('localhost', 'root', '', 'bdp');
 
 $sql = "SELECT u.name as name, u.surname as surname, p.birth_date as player_birth_date"
         . ", c.background_family as background_family, c.background_injuries as background_injuries"
